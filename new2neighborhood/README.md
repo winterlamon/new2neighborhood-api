@@ -1,6 +1,21 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
+##TO DO
+
+###API
+  - create instances of venues in Venue controller
+      - find FS venue keys that match resource keys (e.g. name: venue.whateveritscalledinFS-API)
+          - name = name
+
+
+
+
+
+
+
+
+
+<!-- This README would normally document whatever steps are necessary to get the
 application up and running.
 
 Things you may want to cover:
@@ -21,4 +36,4 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
+* ... -->
