@@ -1,13 +1,14 @@
 class VenuesController < ApplicationController
 
     def index
-        @venues = Venues.all
-        render :json => @venues
+        @venues = Venue.all
+        render :json=> @venues
     end
 
 
     def create
-        @venues = Venue.create_from_location
-        render :json => @venues
+        @venue = Venue.create_from_location
+        render :json=>  @venue
     end
 end
+ 
