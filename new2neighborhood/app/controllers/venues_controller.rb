@@ -1,17 +1,14 @@
 class VenuesController < ApplicationController
 
-    def index
-    end
+      def index
+          @venues = Venues.all
+          render :json => @venues
+      end
 
-    def show
-    end
 
-    def create
-        venues = Venue.call_api
-        venues.each do |venue| 
-            Venue.new
-            Venue.name = venue.name
-            Venue.save
-    end
+      def create
+          @venues = Venue.create_from_location
+          render :json => @venues
+      end
 
 end
