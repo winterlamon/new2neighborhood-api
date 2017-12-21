@@ -1,6 +1,4 @@
 class Venue < ApplicationRecord
-  
-
 
   def self.call_api(lat, lon)
     client = Foursquare2::Client.new(:client_id => '1XA3FP3VEHXNXDJSA1GMNDARTHHSZ2KJ5PLHKW0MBM50MFX0', 
@@ -15,14 +13,14 @@ class Venue < ApplicationRecord
     venue_data = self.call_api(lat, lon)
     venue_data.each do |data| 
       venue = Venue.find_or_create_by(
-        name: data.name, 
-        address:  data.location.address, 
+        name: data.name,
+        address:  data.location.address,
         city:  data.location.city,
-        state: data.location.state, 
-        postalCode:  data.location.postalCode, 
+        state: data.location.state,
+        postalCode:  data.location.postalCode,
         lat:  data.location.lat,
-        lng:  data.location.lng, 
-        category:  data.categories[0].name, 
+        lng:  data.location.lng,
+        category:  data.categories[0].name,
         description:  data.description,
         url:  data.url
       )
@@ -31,4 +29,5 @@ class Venue < ApplicationRecord
     end
     created_venues
   end
+
 end

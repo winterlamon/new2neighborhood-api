@@ -10,5 +10,6 @@ class VenuesController < ApplicationController
         @venue = Venue.create_from_location
         render :json=>  @venue
     end
+
 end
  
