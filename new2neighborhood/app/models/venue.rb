@@ -1,9 +1,10 @@
 class Venue < ApplicationRecord
 
   def self.call_api(lat, lon)
+    date = self.get_date
     client = Foursquare2::Client.new(:client_id => '1XA3FP3VEHXNXDJSA1GMNDARTHHSZ2KJ5PLHKW0MBM50MFX0', 
             :client_secret => 'Y5ETOZQBBOZA5WJHAQEGNLIVBEGD0BGRTSZXUQPCBXQD0C30', 
-            :api_version => '20171220')
+            :api_version => date)
     ll = lat + ',' + lon
     client.search_venues(:ll => ll, :query => 'bar+restaurant', :limit => 50).venues
   end
@@ -30,4 +31,10 @@ class Venue < ApplicationRecord
     created_venues
   end
 
+  def self.get_date
+    year = Date.today.year
+    month = Date.today.month
+    day = Date.today.day
+    today = [year, month, day].join('')
+  end
 end
