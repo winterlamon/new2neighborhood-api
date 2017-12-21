@@ -5,8 +5,6 @@ class VenuesController < ApplicationController
         render :json => @venues
     end
 
-    def show
-    end
 
     def create
         @venues = Venue.create_from_location
