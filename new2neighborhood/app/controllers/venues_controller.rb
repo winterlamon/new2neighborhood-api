@@ -1,7 +1,7 @@
 class VenuesController < ApplicationController
 
     def index
-        @venues = Venues.all
+        @venues = Venue.all
         render :json => @venues
     end
 
