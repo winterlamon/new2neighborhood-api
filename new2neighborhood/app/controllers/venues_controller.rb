@@ -7,8 +7,8 @@ class VenuesController < ApplicationController
 
 
     def create
-        @venues = Venue.create_from_location
-        render :json => @venues
+        @venue = Venue.create_from_location
+        render :json=>  @venue
     end
 
 end
