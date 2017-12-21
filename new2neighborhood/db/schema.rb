@@ -34,8 +34,13 @@ ActiveRecord::Schema.define(version: 20171220201300) do
 
   create_table "venues", force: :cascade do |t|
     t.string "name"
-    t.string "location"
-    t.string "categories"
+    t.string "address"
+    t.string "city"
+    t.string "state"
+    t.string "postalCode"
+    t.float "lat"
+    t.float "lng"
+    t.string "category"
     t.string "description"
     t.string "url"
     t.datetime "created_at", null: false
