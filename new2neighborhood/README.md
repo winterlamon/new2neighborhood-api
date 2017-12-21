@@ -6,6 +6,11 @@
   - create instances of venues in Venue controller
       - find FS venue keys that match resource keys (e.g. name: venue.whateveritscalledinFS-API)
           - name = name
+          - location = formattedAddress
+          - categories = categories
+          - description = description
+          - url = shortUrl
+
 
 
 
