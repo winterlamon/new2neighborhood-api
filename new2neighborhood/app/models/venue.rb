@@ -11,19 +11,19 @@ class Venue < ApplicationRecord
 
   def self.create_from_location(lat = '40.704069', lon = '-74.0132413', radius='1000', section='food')
     created_venues = []
-    venue_data = self.call_api(lat, lon)
+    venue_data = self.call_api(lat, lon, radius, section)
     venue_data.items.each do |data|
       venue = Venue.find_or_create_by(
-        name: data.name,
-        address:  data.location.address,
-        city:  data.location.city,
-        state: data.location.state,
-        postalCode:  data.location.postalCode,
-        lat:  data.location.lat,
-        lng:  data.location.lng,
-        category:  data.categories[0].name,
-        description:  data.description,
-        url:  data.url
+        name: data.venue.name,
+        address:  data.venue.location.address,
+        city:  data.venue.location.city,
+        state: data.venue.location.state,
+        postalCode:  data.venue.location.postalCode,
+        lat:  data.venue.location.lat,
+        lng:  data.venue.location.lng,
+        category:  data.venue.categories[0].name,
+        description:  data.venue.description,
+        url:  data.venue.url
       )
 
       created_venues << venue
