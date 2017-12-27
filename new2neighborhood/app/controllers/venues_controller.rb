@@ -2,7 +2,7 @@ class VenuesController < ApplicationController
 
     def index
         @venues = Venue.all
-        render :json=> @venues
+        render :json => @venues
     end
 
 
@@ -12,4 +12,3 @@ class VenuesController < ApplicationController
     end
 
 end
- 
