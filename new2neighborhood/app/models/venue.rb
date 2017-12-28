@@ -10,7 +10,7 @@ class Venue < ApplicationRecord
     client.explore_venues(:ll => ll, :radius=> meters, :section=> section, :limit => 100).groups[0]
   end
 
-  def self.create_from_location(lat = '40.704069', lon = '-74.0132413', radius='1000', section='food')
+  def self.create_from_location(lat = '40.704069', lon = '-74.0132413', radius="5", section='food')
     created_venues = []
     venue_data = self.call_api(lat, lon, radius, section)
     venue_data.items.each do |data|
@@ -23,7 +23,6 @@ class Venue < ApplicationRecord
         lat:  data.venue.location.lat,
         lng:  data.venue.location.lng,
         category:  data.venue.categories[0].name,
-        description:  data.venue.description,
         url:  data.venue.url
       )
 
@@ -41,7 +40,7 @@ class Venue < ApplicationRecord
   end
 
   def self.convert_miles_to_meters(miles)
-    (miles * 1609.34).to_s
+    (miles.to_i * 1609.34).floor.to_s
   end
 
 end

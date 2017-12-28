@@ -2,13 +2,15 @@ class VenuesController < ApplicationController
 
     def index
         @venues = Venue.all
-        render :json => @venues
+        render json: @venues
     end
 
 
     def create
-        @venue = Venue.create_from_location #takes lat, lon, radius, section arguments
-        render :json=>  @venue
+        #takes lat, lon, radius, section arguments
+        @venues = Venue.create_from_location(
+            params[:lat], params[:lon], params[:radius], params[:selection]) 
+        render json: @venues
     end
 
 end
