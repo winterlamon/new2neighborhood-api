@@ -2,11 +2,12 @@ class Venue < ApplicationRecord
 
   def self.call_api(lat, lon, radius, section)
     date = self.get_date
+    meters = self.convert_miles_to_meters(radius)
     client = Foursquare2::Client.new(:client_id => '1XA3FP3VEHXNXDJSA1GMNDARTHHSZ2KJ5PLHKW0MBM50MFX0', 
             :client_secret => 'Y5ETOZQBBOZA5WJHAQEGNLIVBEGD0BGRTSZXUQPCBXQD0C30', 
             :api_version => date)
     ll = lat + ',' + lon
-    client.explore_venues(:ll => ll, :radius=> radius, :section=> section, :limit => 100).groups[0]
+    client.explore_venues(:ll => ll, :radius=> meters, :section=> section, :limit => 100).groups[0]
   end
 
   def self.create_from_location(lat = '40.704069', lon = '-74.0132413', radius='1000', section='food')
@@ -38,4 +39,9 @@ class Venue < ApplicationRecord
     date = [year, month, day].join('')
     date
   end
+
+  def self.convert_miles_to_meters(miles)
+    (miles * 1609.34).to_s
+  end
+
 end
