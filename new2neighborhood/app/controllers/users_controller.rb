@@ -1,2 +1,43 @@
 class UsersController < ApplicationController
+
+    def index
+      @users = User.all
+
+      render json: @users
+    end
+
+    def show
+    end
+
+    def create
+      @user = User.new(first_name: params['firstName'], last_name: params['lastName'], email: params['username'], password: params['password'])
+
+      if @user.save
+        render :show, status: :created, location: @user
+      else
+        render json: @user.errors, status: :unprocessable_entity
+      end
+    end
+
+    def update
+      if @user.update(user_params)
+        render :show, status: :ok, location: @user
+      else
+        render json: @user.errors, status: :unprocessable_entity
+      end
+    end
+
+    def destroy
+      @user.destroy
+    end
+
+    # private
+    #
+    #   def set_user
+    #     @user = User.find(params[:id])
+    #   end
+    #
+    #   def user_params
+    #     params.require(:user).permit(:firstName, :lastName, :username, :password)
+    #   end
 end
