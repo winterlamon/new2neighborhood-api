@@ -6,9 +6,9 @@ class AuthController < ApplicationController
         user = User.find_by(email: params[:username])
 
         if user && user.authenticate(params[:password])
-            render json: {username: user.email, id: user.id, token: issue_token({id: user.id})}
+            render json: {firstName: user.first_name, lastName: user.last_name, username: user.email, id: user.id, token: issue_token({id: user.id})}
         else
-            render json: {error: "Oops! We can't find an account with that username or password"}, status: 401
+            render json: {error: "Oops! We can't find an account with that username or password."}, status: 401
         end
     end
 
