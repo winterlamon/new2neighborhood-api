@@ -43,4 +43,9 @@ class Venue < ApplicationRecord
     (miles.to_i * 1609.34).floor.to_s
   end
 
+  def self.get_coords_from_address(address, city, state, zip)
+    full_address = [address, city, state, zip].join(',')
+    Geocoder.coordinates(full_address)
+  end
+
 end
