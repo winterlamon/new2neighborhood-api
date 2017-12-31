@@ -1,4 +1,6 @@
 class Venue < ApplicationRecord
+  has_many :user_venues
+  has_many :users, through: :user_venues
 
   def self.call_api(lat, lon, radius, section)
     date = self.get_date

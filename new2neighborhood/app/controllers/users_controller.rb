@@ -15,8 +15,10 @@ class UsersController < ApplicationController
       if @user.save
         render :show, status: :created, location: @user
       else
-        # render json: @user.errors, status: 422
+        # render json: @user.errors, status: :unprocessable_entity
+
         render json: {error: "Oops! You must include all fields. Must use a valid email."}, status: 422
+        # render json: {error: @user.errors}, status: 422
       end
     end
 
