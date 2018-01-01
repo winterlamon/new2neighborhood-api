@@ -16,6 +16,6 @@ class VenuesController < ApplicationController
                 @coords[0].to_s, @coords[1].to_s, params[:radius], params[:selection]
             )
         end
-        render json: @venues
+        render json: {venues: @venues, coords: @coords}
     end
 end
