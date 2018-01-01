@@ -15,8 +15,10 @@ ActiveRecord::Schema.define(version: 20171220201300) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "lists", force: :cascade do |t|
-    t.string "title"
+  create_table "user_venues", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "venue_id"
+    t.boolean "visited", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
