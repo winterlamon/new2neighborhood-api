@@ -20,7 +20,7 @@ class Venue < ApplicationRecord
         name: data.venue.name,
         address:  data.venue.location.address,
         city:  data.venue.location.city,
-        state: data.venue.location.state,git
+        state: data.venue.location.state,
         postalCode:  data.venue.location.postalCode,
         lat:  data.venue.location.lat,
         lng:  data.venue.location.lng,
