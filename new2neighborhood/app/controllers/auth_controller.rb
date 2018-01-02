@@ -16,6 +16,7 @@ class AuthController < ApplicationController
         # GET request to the'/current_user' route
         # Requires headers to contain 'Authorization': token
         if current_user
+            user = current_user
             render json: {username: user.email, id: user.id}
         else
             render json: {error: "Invalid token"}, status: 401
