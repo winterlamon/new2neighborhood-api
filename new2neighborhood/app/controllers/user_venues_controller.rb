@@ -7,6 +7,8 @@ class UserVenuesController < ApplicationController
   end
 
   def show
+    @user_venue = UserVenue.find(params[:id])
+    render json: @user_venue
   end
 
   def create

@@ -3,7 +3,7 @@ class Venue < ApplicationRecord
   has_many :users, through: :user_venues
 
   def self.call_api(lat, lon, radius, section)
-    date = self.get_date
+    # date = self.get_date
     meters = self.convert_miles_to_meters(radius)
     client = Foursquare2::Client.new(:client_id => ENV['client_id'],
             :client_secret => ENV['client_secret'],
