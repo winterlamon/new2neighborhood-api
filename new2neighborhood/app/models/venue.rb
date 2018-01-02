@@ -7,7 +7,7 @@ class Venue < ApplicationRecord
     meters = self.convert_miles_to_meters(radius)
     client = Foursquare2::Client.new(:client_id => ENV['client_id'],
             :client_secret => ENV['client_secret'],
-            :api_version => date)
+            :api_version => '20171231')
     ll = lat + ',' + lon
     client.explore_venues(:ll => ll, :radius=> meters, :section=> section, :limit => 100).groups[0]
   end
@@ -20,7 +20,7 @@ class Venue < ApplicationRecord
         name: data.venue.name,
         address:  data.venue.location.address,
         city:  data.venue.location.city,
-        state: data.venue.location.state,
+        state: data.venue.location.state,git
         postalCode:  data.venue.location.postalCode,
         lat:  data.venue.location.lat,
         lng:  data.venue.location.lng,
