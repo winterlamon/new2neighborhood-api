@@ -1,6 +1,11 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :first_name, :last_name, :email, :password_digest
+  attributes :id, :first_name, :last_name, :email, :venues
 
-  has_many :user_venues
-  has_many :venues, through: :user_venues
+  def venues
+    object.venues.map do |venue|
+    all_user_venues = venue.user_venues.map {|uv| {visited: uv.visited}.merge(uv.venue.attributes)}
+
+    venue.attributes.merge({user_venues: all_user_venues})
+    end
+  end
 end

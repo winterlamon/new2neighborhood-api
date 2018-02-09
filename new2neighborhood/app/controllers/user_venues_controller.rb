@@ -29,8 +29,13 @@ class UserVenuesController < ApplicationController
     end
   end
 
-  def destroy
+  def remove
+    @user_venue = UserVenue.find_by(user_id: params[:user_id], venue_id: params[:venue_id])
     @user_venue.destroy
+
+    @user_venues = current_user.venues
+
+    render json: @user_venues
   end
 
   private
