@@ -15,7 +15,8 @@ class UsersController < ApplicationController
       @user = User.new(first_name: params['firstName'], last_name: params['lastName'], email: params['username'], password: params['password'])
 
       if @user.save
-        render :show, status: :created, location: @user
+        render json: {id: @user.id, first_name: @user.first_name, last_name: @user.last_name, username: @user.email, venues: @user.venues, token: issue_token({id: @user.id})}
+        # render :show, status: :created, location: @user
       else
         # render json: @user.errors, status: :unprocessable_entity
 
