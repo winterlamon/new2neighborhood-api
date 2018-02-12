@@ -19,7 +19,7 @@ class UserVenuesController < ApplicationController
     if @user_venue.save
       render json: {user: UserSerializer.new(current_user)}, status: :created, location: @user_venue
     else
-      render json: {error: "This venue is already in your list."}
+      render json: {error: "This venue is already in your saved venues."}
     end
   end
 
