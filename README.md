@@ -1,5 +1,7 @@
 <h1 align=center><img src="/n2n-logo-black.png" alt="New2Neighborhood logo" /></h1>
 
+This is the Rails API for New2Neighborhood.
+
 New2Neighborhood allows you to search for bars and restaurants using either your current location or by setting an address. When you've found a venue that strikes your fancy, you can save it to a list of venues for you to explore at your leisure. Think of it as your food and drink to-do list! Once you have visited a venue, you can mark it off and pat yourself on the back for your successful gastro expedition. Cheers to you, young explorer!
 
 This app uses:
@@ -14,7 +16,9 @@ This app uses:
 
 ## Installation
 
-To run the API on your local server to use with the front end repo, the server tshould be set to port 3001. The port can be set in the terminal by running `rails s -p 3001`.
+Before running the local server, set up the database by running `rails db:create` then `rails db:migrate` in the terminal.
+
+To run the API on your local server to use with the front-end repo, the server should be set to port 3001. The port can be set in the terminal by running `rails s -p 3001`.
 
 ## Usage
 
