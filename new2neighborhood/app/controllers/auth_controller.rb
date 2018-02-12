@@ -16,7 +16,7 @@ class AuthController < ApplicationController
         # GET request to the'/current_user' route
         # Requires headers to contain 'Authorization': token
         if current_user
-            render json: {user: UserSerializer.new(current_user), token: issue_token({id: user.id})}
+            render json: {user: UserSerializer.new(current_user), token: issue_token({id: current_user.id})}
         else
             render json: {error: "Invalid token"}, status: 401
         end

@@ -8,22 +8,26 @@ class UserVenuesController < ApplicationController
 
   def show
     @user_venue = UserVenue.find(params[:id])
-    render json: @user_venue
+
+
+    render json: {user: UserSerializer.new(current_user)}
   end
 
   def create
     @user_venue = UserVenue.new(user_venue_params)
 
     if @user_venue.save
-      render :show, status: :created, location: @user_venue
+      render json: {user: UserSerializer.new(current_user)}, status: :created, location: @user_venue
     else
-      render json: @user_venue.errors, status: :unprocessable_entity
+      render json: {error: "This venue is already in your list."}
     end
   end
 
   def update
-    if @user_venue.update(user_venue_params)
-      render :show, status: :ok, location: @user_venue
+    @user_venue = UserVenue.find(params[:id])
+        @user_venue.visited = (params[:visited])
+    if @user_venue.save
+      render json: {user: UserSerializer.new(current_user)}, status: :ok, location: @user_venue
     else
       render json: @user_venue.errors, status: :unprocessable_entity
     end
@@ -31,6 +35,8 @@ class UserVenuesController < ApplicationController
 
   def destroy
     @user_venue.destroy
+
+    render json: {user: UserSerializer.new(current_user)}
   end
 
   private
