@@ -15,9 +15,8 @@ class UserVenuesController < ApplicationController
 
   def create
     @user_venue = UserVenue.new(user_venue_params)
-
     if @user_venue.save
-      render json: {user: UserSerializer.new(current_user)}, status: :created, location: @user_venue
+      render json: {user: UserSerializer.new(@user_venue.user)}, status: :created, location: @user_venue
     else
       render json: {error: "This venue is already in your saved venues."}
     end
@@ -26,8 +25,8 @@ class UserVenuesController < ApplicationController
   def update
     @user_venue = UserVenue.find(params[:id])
         @user_venue.visited = (params[:visited])
-    if @user_venue.save
-      render json: {user: UserSerializer.new(current_user)}, status: :ok, location: @user_venue
+        if @user_venue.save
+      render json: {user: UserSerializer.new(@user_venue.user)}, status: :ok, location: @user_venue
     else
       render json: @user_venue.errors, status: :unprocessable_entity
     end
